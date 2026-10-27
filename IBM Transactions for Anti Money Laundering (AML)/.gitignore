@@ -1,0 +1,37 @@
+# Local Python and editor state
+.venv/
+.kilo/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+
+# Reproducible, very large source and derived populations stay in local/object storage.
+archive/*.csv
+archive.zip
+powerbi_staging/*.parquet
+powerbi_staging/**/*.parquet
+analysis/frame_aml_full_population_profile.json
+docs/FrameAML_IBM_Data_Preparation_and_Descriptive_Analysis.xlsx
+docs/.FrameAML_IBM_Data_Preparation_and_Descriptive_Analysis.raw.tmp.xlsx
+docs/.FrameAML_IBM_Data_Preparation_and_Descriptive_Analysis.compatible.tmp.xlsx
+
+# Ryno source populations and original shared materials stay local; do not redistribute them.
+Ryno Analysis(IBM)/HI-Small_Trans.csv
+Ryno Analysis(IBM)/HI-Small_accounts.csv
+Ryno Analysis(IBM)/hismall_to_udm_messages.py
+Ryno Analysis(IBM)/hismall_to_udm_sanitised.py
+Ryno Analysis(IBM)/Notes for Francois_Matale.docx
+Ryno Analysis(IBM)/Sanitised Transaction Attributes Required.xlsx
+Ryno Analysis(IBM)/UDM_message_spec.md
+
+# Keep the conversion provenance manifests; the large generated message sets
+# and labels are rebuildable outputs.
+Ryno Analysis(IBM)/top20/*
+!Ryno Analysis(IBM)/top20/manifest.json
+Ryno Analysis(IBM)/sanitised_bank12/*
+!Ryno Analysis(IBM)/sanitised_bank12/manifest.json
+
+# Power BI binaries are large, frequently user-specific, and versioned separately.
+*.pbix
+*.pbix.bak
+*.pbix.original.bak

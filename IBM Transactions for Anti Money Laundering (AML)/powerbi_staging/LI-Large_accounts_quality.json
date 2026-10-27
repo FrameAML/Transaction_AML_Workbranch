@@ -1,0 +1,48 @@
+{
+  "dataset_variant": "LI-Large",
+  "source_file": "LI-Large_accounts.csv",
+  "source_path": "C:\\Users\\peter\\OneDrive - Frame Consulting\\IBM Transactions for Anti Money Laundering (AML)\\archive\\LI-Large_accounts.csv",
+  "source_bytes": 144349585,
+  "staged_file": "C:\\Users\\peter\\OneDrive - Frame Consulting\\IBM Transactions for Anti Money Laundering (AML)\\powerbi_staging\\LI-Large_accounts.parquet",
+  "row_count": 2079627,
+  "source_columns": [
+    "Bank Name",
+    "Bank ID",
+    "Account Number",
+    "Entity ID",
+    "Entity Name"
+  ],
+  "staged_columns": [
+    "Dataset Variant",
+    "Bank Name",
+    "Bank ID",
+    "Account Number",
+    "Entity ID",
+    "Entity Name",
+    "Account"
+  ],
+  "identifier_columns_preserved_as_text": [
+    "Bank ID",
+    "Account Number",
+    "Entity ID"
+  ],
+  "join_guidance": "Account Number is not unique by itself. Join using Dataset Variant, Bank ID (compare its numeric value to From Bank or To Bank), and Account Number (compare to Sender Account or Receiver Account).",
+  "null_counts": {
+    "Account": 0,
+    "Account Number": 0,
+    "Bank ID": 0,
+    "Bank Name": 0,
+    "Dataset Variant": 0,
+    "Entity ID": 0,
+    "Entity Name": 0
+  },
+  "format": "Parquet",
+  "compression": "zstd",
+  "composite_join_key_fields": [
+    "Dataset Variant",
+    "Bank ID with leading zeroes ignored",
+    "Account Number"
+  ],
+  "composite_join_key_unique": true,
+  "owner_column": "Entity Name"
+}

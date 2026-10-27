@@ -1,0 +1,5 @@
+numpy==2.5.3
+pandas==3.0.6
+pyarrow==25.0.1
+openpyxl==3.1.5
+python-docx==1.2.0

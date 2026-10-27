@@ -1,0 +1,108 @@
+{
+ "spec": "Sanitised Transaction Attributes Required.xlsx (12 attributes)",
+ "attributeMapping": [
+  {
+   "jsonKey": "transactionId",
+   "attribute": "Unique Identifier for the transaction"
+  },
+  {
+   "jsonKey": "accountKey",
+   "attribute": "Account Key"
+  },
+  {
+   "jsonKey": "transactionDateTime",
+   "attribute": "Transaction Date/Time"
+  },
+  {
+   "jsonKey": "transactionType",
+   "attribute": "Transaction Type"
+  },
+  {
+   "jsonKey": "transactionDirection",
+   "attribute": "Transaction Direction"
+  },
+  {
+   "jsonKey": "transactionAmountOriginal",
+   "attribute": "Transaction Amount in Original Currency"
+  },
+  {
+   "jsonKey": "originalCurrencyCode",
+   "attribute": "Original Currency Code"
+  },
+  {
+   "jsonKey": "transactionAmountAccountCcy",
+   "attribute": "Transaction Amount in Account Currency"
+  },
+  {
+   "jsonKey": "transactionBranch",
+   "attribute": "Transaction Branch"
+  },
+  {
+   "jsonKey": "oppositeAccountNumber",
+   "attribute": "Opposite account number"
+  },
+  {
+   "jsonKey": "oppositeBank",
+   "attribute": "Opposite bank"
+  },
+  {
+   "jsonKey": "oppositeCountryCode",
+   "attribute": "Opposite country code"
+  }
+ ],
+ "banks": [
+  12
+ ],
+ "accountCurrency": "ZAR",
+ "parameters": {
+  "banks": "12",
+  "top": null,
+  "exclude_banks": "70",
+  "account_currency": "ZAR",
+  "usd_rate": 17.5,
+  "fx": null,
+  "branches_per_bank": 25,
+  "branch_mode": "channel",
+  "opposite_bank": "id",
+  "country_scope": "all",
+  "direction_format": "code",
+  "key_style": "camel",
+  "amount_decimals": 2,
+  "exclude_reinvestment": false,
+  "exclude_tail": false,
+  "gzip": false,
+  "sample": 20
+ },
+ "splitBoundaries": {
+  "train_end": "2022/09/06 13:36",
+  "val_end": "2022/09/08 16:12"
+ },
+ "counts": {
+  "legs": 121626,
+  "legs_D": 79754,
+  "pos_legs": 165,
+  "teller_legs": 60784,
+  "cross_border_legs": 61704,
+  "legs_C": 41872,
+  "payments": 113744,
+  "pos_payments": 158,
+  "dropped": {}
+ },
+ "syntheticOrAssumed": [
+  "All accounts treated as ZAR (spreadsheet test assumption).",
+  "FX: median implied HI-Small rate to USD x 17.5 ZAR/USD.",
+  "Transaction Branch is synthetic (deterministic home branch per account; electronic legs at <bank>-B000).",
+  "Transaction Date/Time: source has no time zone; emitted as local time."
+ ],
+ "inputs": {
+  "HI-Small_Trans.csv": "b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040",
+  "HI-Small_accounts.csv": "786808526e33cfc441212dd6fccda7edfc24172149bed59c6ef59b186836b014"
+ },
+ "outputs": {
+  "fx_rates.json": "84a7e1ec9016b240951b8d93b0e133c4e42b58e88a4a346558e5e11451044146",
+  "labels.csv": "179ba6c60e7ef95944e6acdf5262c2020820f724db83dce33fdbff06162f9b9f",
+  "sample_messages.json": "d8f4bc252e058322ac63064eaa95ed55b2b3e40af02071c21003624cd9042e99",
+  "transactions.jsonl": "185644737e8f27b0c35b3063454628fe57cff1a948b7c6e075466227ac0e0cc6",
+  "transactions.jsonl.gz": "79ca0553535e6d07d4c4f4f79c8f0e6b529e5494ccf5894d6bc2d3686347940f"
+ }
+}

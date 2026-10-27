@@ -1,0 +1,82 @@
+{
+ "schemaVersion": "1.0",
+ "generatedAt": "2026-10-26T15:00:08+00:00",
+ "institutionId": "POOLED_20_BANKS",
+ "banks": [
+  1,
+  3,
+  6,
+  7,
+  10,
+  11,
+  12,
+  14,
+  15,
+  20,
+  22,
+  23,
+  28,
+  116,
+  118,
+  211,
+  220,
+  1292,
+  1362,
+  1665
+ ],
+ "parameters": {
+  "banks": null,
+  "top": 20,
+  "exclude_banks": "70",
+  "institution_id": null,
+  "base_currency": "USD",
+  "fx": null,
+  "tz_offset": "+00:00",
+  "exclude_reinvestment": false,
+  "exclude_tail": true,
+  "cp_names": false,
+  "gzip": true,
+  "sample": 25,
+  "generated_at": null
+ },
+ "splitBoundaries": {
+  "train_end": "2022/09/06 13:36",
+  "val_end": "2022/09/08 16:12",
+  "protocol": "60/20/20 by timestamp over full dataset"
+ },
+ "counts": {
+  "legs": 1216251,
+  "legs_D": 763712,
+  "pos_legs": 1088,
+  "onus_legs": 244394,
+  "self_legs": 118910,
+  "legs_C": 452539,
+  "payments": 1034599,
+  "pos_payments": 898,
+  "pos_payments_in_patterns": 646,
+  "accounts_master": 33744,
+  "parties_master": 22453,
+  "dropped": {
+   "tail": 274
+  }
+ },
+ "inputs": {
+  "HI-Small_Trans.csv": "b19d39f515523373f991b689c07e11e7b0b95c17a2c27a87d91584ae16c5b040",
+  "HI-Small_accounts.csv": "786808526e33cfc441212dd6fccda7edfc24172149bed59c6ef59b186836b014",
+  "HI-Small_Patterns.txt": "2c546b5ce6009e73851f0139af053cf845f08bf92f3bc82fe1eb937dec2ef39b"
+ },
+ "outputs": {
+  "accounts.jsonl": "099ca9274109f1eb253158a4d71ca3a1dcc41d8599e0978290d30f84d0439113",
+  "fx_rates.json": "42712244966b994366589178cfe6da675f5201e4657cc3fd2aa5451befd342c8",
+  "labels.csv": "3c4dd369e3ef1c31b90a979f5269dccf478f8129a4c0815d2302afc790777c88",
+  "parties.jsonl": "4874484ae1f854a51c326d8033b0301b9e0b1e6b595cc7762b47a37e451a1a25",
+  "party_account.jsonl": "cf55a35c2b00cfd3cfa251635b0354cd9928f4922943d56d9670b5c5760cccda",
+  "sample_messages.json": "40cc8c80eb42c699d1a0a620f832e2feb35c7b46370fb5e52d265281a79ec51d",
+  "transactions.jsonl.gz": "d36dfdbbbfaf4e14e0d98e37d4254c29494e09768063917cad6a838c9969347d"
+ },
+ "notes": [
+  "Labels are in labels.csv only; never load them into the UDM.",
+  "External counterparties carry account, bank and country only.",
+  "UDM field names are indicative; map JSON paths to the target UDM data dictionary."
+ ]
+}
