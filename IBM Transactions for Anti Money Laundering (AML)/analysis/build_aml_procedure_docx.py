@@ -392,10 +392,11 @@ def build_document():
         doc,
         [
             "`README.md` — project overview and folder map.",
-            "`docs/AML_DATA_INTERPRETATION.md` — detailed field and join interpretation.",
-            "`docs/FRANCOIS_AML_ANALYSIS_CHECKLIST.md` — concise case-review checklist.",
-            "`PowerBI_Staging_IBM_AML_Dataset.md` — staging pipeline, source inventory, and join guidance.",
-            "`stage_aml_for_powerbi.py` — reproducible source-to-Parquet staging process.",
+            "`docs/ACCOUNT_AND_BANK_IDENTIFIER_GUIDE.md` — account keys, bank identifiers, and safe joins.",
+            "`docs/RYNO_UDM_ANALYSIS.md` — conversion assumptions and limitations.",
+            "`docs/POWERBI_DATA_STAGING.md` — source inventory, staging outputs, and join guidance.",
+            "`analysis/stage_aml_for_powerbi.py` — reproducible source-to-Parquet staging process.",
+            "`Reports/PowerBI/` — the original report, walkthrough, and preserved report copies.",
             "`powerbi_staging/manifest.json` and the per-variant quality JSON — actual staged paths and quality facts.",
         ],
     )

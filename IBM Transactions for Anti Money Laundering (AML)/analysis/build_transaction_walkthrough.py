@@ -16,8 +16,9 @@ from docx.shared import Inches, Pt, RGBColor
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE_PBIX = ROOT / "IBM_AML_Analysis-updated.pbix"
-OUTPUT_PBIX = ROOT / "IBM_AML_Analysis-updated-transaction-walkthrough.pbix"
+POWERBI_DIR = ROOT / "Reports" / "PowerBI"
+SOURCE_PBIX = POWERBI_DIR / "IBM_AML_Analysis-updated.pbix"
+OUTPUT_PBIX = POWERBI_DIR / "IBM_AML_Analysis-updated-transaction-walkthrough.pbix"
 OUTPUT_DOCX = ROOT / "docs" / "IBM_AML_PowerBI_Transaction_Walkthrough.docx"
 MODEL_ENTITY = "FactTransactions"
 PAGE_ID = "7da51fe165ba676ec308"
@@ -438,11 +439,11 @@ def build_word_guide() -> None:
     add_docx_callout(
         doc,
         "Start here",
-        "Open IBM_AML_Analysis-updated-transaction-walkthrough.pbix in Power BI "
+        "Open Reports/PowerBI/IBM_AML_Analysis-updated-transaction-walkthrough.pbix in Power BI "
         "Desktop and select the Transaction Walkthrough page. The four-step guide "
         "and transaction-level table are embedded in this separate working copy. "
         "Use the report zoom controls to enlarge the page when needed. The original "
-        "IBM_AML_Analysis-updated.pbix remains untouched.",
+        "Reports/PowerBI/IBM_AML_Analysis-updated.pbix remains untouched.",
         GREEN,
     )
     add_docx_callout(
@@ -469,7 +470,7 @@ def build_word_guide() -> None:
     add_docx_bullets(
         doc,
         [
-            "Open IBM_AML_Analysis-updated-transaction-walkthrough.pbix and select the Transaction Walkthrough page. Keep IBM_AML_Analysis-updated.pbix as the untouched original.",
+            "Open Reports/PowerBI/IBM_AML_Analysis-updated-transaction-walkthrough.pbix and select the Transaction Walkthrough page. Keep Reports/PowerBI/IBM_AML_Analysis-updated.pbix as the untouched original.",
             "Use the zoom control at the lower-right of the report canvas to enlarge the guide and table; use Fit to page to return to the complete layout.",
             "Read the numbered guide first, then follow a table row from Timestamp/Transaction Key to sender, receiver, amounts, currencies, payment format, and label.",
             "Use the column header filters to find a value or narrow the table. Clear filters before starting a different review.",
@@ -617,8 +618,8 @@ def build_word_guide() -> None:
     add_docx_bullets(
         doc,
         [
-            "`IBM_AML_Analysis-updated.pbix` — original updated report, left unchanged.",
-            "`IBM_AML_Analysis-updated-transaction-walkthrough.pbix` — separate report copy with the visible Transaction Walkthrough page.",
+            "`Reports/PowerBI/IBM_AML_Analysis-updated.pbix` — original updated report, left unchanged.",
+            "`Reports/PowerBI/IBM_AML_Analysis-updated-transaction-walkthrough.pbix` — separate report copy with the visible Transaction Walkthrough page.",
             "`docs/IBM_AML_Interpretation_and_Review_Guide.xlsx` — field guide and review workbook.",
             "`docs/IBM_AML_Transaction_Analysis_Procedure.docx` — general analysis procedure.",
             "`powerbi_staging/HI-Small_Trans_quality.json` — source count and quality facts for the illustrated variant.",

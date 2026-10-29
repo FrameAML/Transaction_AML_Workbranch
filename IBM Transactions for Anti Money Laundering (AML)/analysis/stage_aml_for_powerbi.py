@@ -81,6 +81,7 @@ SOURCE_FILE_PATTERN = re.compile(
     r"^(?P<variant>(?:HI|LI)-(?:Small|Medium|Large))_"
     r"(?P<kind>Trans\.csv|accounts\.csv|Patterns\.txt)$"
 )
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 def _write_json(path: Path, content: dict[str, Any]) -> None:
@@ -451,13 +452,13 @@ def main() -> None:
     parser.add_argument(
         "--source-dir",
         type=Path,
-        default=Path(__file__).parent / "archive",
+        default=PROJECT_ROOT / "archive",
         help="Folder containing the IBM source files (default: ./archive).",
     )
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=Path(__file__).parent / "powerbi_staging",
+        default=PROJECT_ROOT / "powerbi_staging",
         help="Output folder (default: ./powerbi_staging).",
     )
     args = parser.parse_args()

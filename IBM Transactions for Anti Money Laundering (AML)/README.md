@@ -8,14 +8,13 @@ This project is set up to prepare the IBM synthetic AML dataset for transaction 
 |---|---|---|
 | `archive/` | Original IBM CSV and pattern source files for all six variants. | Preserve as source data; do not edit in place. |
 | `powerbi_staging/` | Full Parquet populations, data-quality reports, manifest, and staged pattern copies. | Rebuildable outputs; use for complete analysis. |
-| `analysis/` | Reproducible staging/analysis/report-generation scripts and notes. | Keep code separate from the large data it processes. |
-| `docs/` | Human-facing interpretation, procedures, workbook, and references. | Project documentation and analysis deliverables. |
+| `analysis/` | Reproducible staging, analysis, and report-generation scripts. | Keep code separate from the large data it processes. |
+| `docs/` | Human-facing guides, procedures, workbooks, summary cards, and references. | Project documentation and analysis deliverables. |
+| `Reports/PowerBI/` | Power BI reports, dated backup, and the distinct review copy. | Keep report versions together; preserve the original report unchanged. |
 | `Ryno Analysis(IBM)/` | Ryno's source files, notes, UDM scripts, and conversion manifests. | Keep source CSVs and original Ryno materials local; manifests and our descriptive comparison are versioned. |
 | `test_data/` | Header-only Frame mapping templates and explicitly synthetic pipeline fixture. | Fixture labels remain separate from scoring input. |
-| `powerbi_review_copy/` | An additional walkthrough PBIX with a different file hash from the main report. | Preserved for review; not treated as a duplicate. |
-| `stage_aml_for_powerbi.py` | Chunked conversion from source CSVs to Parquet and quality reports. | Run from the project root with `.venv`. |
-| `IBM_AML_Analysis-updated-transaction-walkthrough.pbix` | Transaction walkthrough report copy. | Keep separate from the protected original PBIX. |
-| `IBM_AML_Analysis-updated.pbix` | Original Power BI report. | Preserve unchanged. |
+| `System/` | Local HI-Small transaction lookup and test-file builder. | Application code, tests, and system instructions. |
+| `Data/` | Local system database, transaction lookups, and generated test sets. | Machine-local output; excluded from Git. |
 
 The local `.venv/`, `.kilo/`, and Python cache files are machine/editor state,
 not project deliverables. `.gitignore` excludes these, the full source/staged
@@ -32,6 +31,19 @@ dimension is kept in `archive/HI-Small_accounts.csv`. These files are
 intentionally ignored by Git. The PBIX is a report, not the CSV export. The
 full local descriptive workbook includes all HI-Small transaction rows across
 five Excel tabs because Excel's worksheet limit is 1,048,576 rows.
+
+The Power BI reports are grouped in `Reports/PowerBI/`. The main updated PBIX
+is kept unchanged; the transaction walkthrough, dated backup, and distinct
+review copy are stored alongside it so report versions are easy to find.
+Supporting Word and Markdown guides are in `docs/`.
+
+The local test system is documented in [`System/README.md`](System/README.md).
+Its code stays in `System/`; building it creates `Data/HI-Small.sqlite3` with
+the full HI-Small transactions and accounts. Transaction lookups and test-set
+exports also stay under `Data/`. The source CSVs in `archive/` are not moved or
+modified, and the local database and generated exports are excluded from Git.
+Use `System/aml_store.py check` and `verify-fixture` to validate the local
+store before using it.
 
 GitHub blocks regular Git files larger than 100 MiB and recommends keeping
 repositories below 5 GB. The six-variant raw CSVs and Parquet population are
@@ -176,18 +188,17 @@ This makes it possible to answer questions such as:
 archive/              Original IBM source CSV/pattern files (immutable)
 powerbi_staging/      Full Parquet tables, manifest, quality, pattern copies
 analysis/             Staging, profile, and document/workbook builder scripts
-docs/                 Guides, analysis workbook, and Word deliverables
+docs/                 Guides, staging instructions, workbooks, and Word deliverables
+Reports/PowerBI/      Main reports, dated backup, and distinct review copy
 Ryno Analysis(IBM)/   Ryno source notes, conversion scripts, and manifests
 test_data/            Frame templates and isolated synthetic fixture
-powerbi_review_copy/  Distinct additional walkthrough PBIX copy
 README.md             Project entry point and run guidance
 requirements.txt      Tested, pinned Python package versions
-stage_aml_for_powerbi.py
 ```
 
 ## Power BI transaction walkthrough
 
-Open `IBM_AML_Analysis-updated-transaction-walkthrough.pbix` in Power BI Desktop and select the **Transaction Walkthrough** page. The page places a readable four-step interpretation guide above a transaction-level table. Use the report zoom controls to enlarge the page when needed.
+Open `Reports/PowerBI/IBM_AML_Analysis-updated-transaction-walkthrough.pbix` in Power BI Desktop and select the **Transaction Walkthrough** page. The page places a readable four-step interpretation guide above a transaction-level table. Use the report zoom controls to enlarge the page when needed.
 
 The table includes the dataset variant, staged transaction key, raw timestamp, sender and receiver bank/account identifiers, debit and credit amounts, their separate currencies, payment format, and the IBM simulator label. Amounts and the label are not summed, and the timestamp is displayed as a raw timestamp rather than a year/quarter hierarchy. Use the table's column filters to isolate a transaction and clear filters before beginning a new review.
 
@@ -229,6 +240,10 @@ generated workbooks document every sheet and the scope/assumptions for the
 Ryno conversions. Full raw source data and the workbook embedding it stay
 local/OneDrive and are not uploaded to GitHub.
 
-`IBM_AML_Analysis-updated.pbix` is the protected original; the walkthrough was added only to the separate working copy. Bank values are identifiers, not verified bank names. `Is Laundering` is a synthetic benchmark label, not proof of real-world wrongdoing. Use `docs/IBM_AML_PowerBI_Transaction_Walkthrough.docx` for the fuller procedure and worked example, `docs/IBM_AML_Transaction_Analysis_Procedure.docx` for the broader analysis workflow, and `docs/IBM_AML_Interpretation_and_Review_Guide.xlsx` as the field glossary and review template.
+`Reports/PowerBI/IBM_AML_Analysis-updated.pbix` is the protected original; the walkthrough is a separate working copy. Bank values are identifiers, not verified bank names. `Is Laundering` is a synthetic benchmark label, not proof of real-world wrongdoing. Use `docs/IBM_AML_PowerBI_Transaction_Walkthrough.docx` for the fuller procedure and worked example, `docs/IBM_AML_Transaction_Analysis_Procedure.docx` for the broader analysis workflow, and `docs/IBM_AML_Interpretation_and_Review_Guide.xlsx` as the field glossary and review template.
+
+The staging guide is in `docs/POWERBI_DATA_STAGING.md`. From the project root,
+run the pipeline with
+`& ".\.venv\Scripts\python.exe" ".\analysis\stage_aml_for_powerbi.py"`.
 
 If a full-population profile JSON already exists and only the workbook/templates need rebuilding, run `python analysis/build_frame_aml_descriptive_workbook.py --reuse-profile`; this uses that profile without rescanning the Parquet population. The default command scans the selected staged variants and defaults to all six.

@@ -22,13 +22,13 @@ original files remain untouched in `archive/`.
 Run the complete staging pipeline from the project folder:
 
 ```powershell
-& ".\.venv\Scripts\python.exe" ".\stage_aml_for_powerbi.py"
+& ".\.venv\Scripts\python.exe" ".\analysis\stage_aml_for_powerbi.py"
 ```
 
 To stage a different source folder or output location:
 
 ```powershell
-& ".\.venv\Scripts\python.exe" ".\stage_aml_for_powerbi.py" `
+& ".\.venv\Scripts\python.exe" ".\analysis\stage_aml_for_powerbi.py" `
   --source-dir "C:\path\to\archive" `
   --output-dir "C:\path\to\powerbi_staging"
 ```

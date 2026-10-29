@@ -5,6 +5,10 @@ __pycache__/
 **/__pycache__/
 *.py[cod]
 
+# The local AML system database, lookups, and exported test runs never belong in Git.
+/Data/
+System/__pycache__/
+
 # Reproducible, very large source and derived populations stay in local/object storage.
 archive/*.csv
 archive.zip
